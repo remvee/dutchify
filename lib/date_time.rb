@@ -28,5 +28,3 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update(
     :default => '%a %d %b %Y, %H:%M')
 ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.update(
     :default => '%a %d %b %Y')
-
-# TODO select_date select_datetime
