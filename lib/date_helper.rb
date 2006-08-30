@@ -1,7 +1,19 @@
+require 'action_view/helpers/date_helper'
+
 module ActionView
   module Helpers
     module DateHelper
-      def distance_of_time_in_words(from_time, to_time = 0, include_seconds = false)
+      distance_of_time_in_words = instance_method(:distance_of_time_in_words)
+      define_method(:english_distance_of_time_in_words) do |*args|
+        distance_of_time_in_words.bind(self).call(*args)
+      end
+
+      def english_time_ago_in_words(from_time, include_seconds = false)
+        english_distance_of_time_in_words(from_time, Time.now, include_seconds)
+      end
+      alias :english_distance_of_time_in_words_to_now :english_time_ago_in_words
+
+      def dutch_distance_of_time_in_words(from_time, to_time = 0, include_seconds = false)
         from_time = from_time.to_time if from_time.respond_to?(:to_time)
         to_time = to_time.to_time if to_time.respond_to?(:to_time)
         distance_in_minutes = (((to_time - from_time).abs) / 60).round
@@ -26,6 +38,7 @@ module ActionView
           else                 "#{(distance_in_minutes / 1440).round} dagen"
         end
       end
+      alias :distance_of_time_in_words :dutch_distance_of_time_in_words
     end
   end
 end
