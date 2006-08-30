@@ -2,6 +2,8 @@ require 'action_view/helpers/date_helper'
 
 module ActionView
   module Helpers
+    # Introduce dutch variants for +time_ago_in_words+ methods.  The original
+    # english version are still available with a +english_+ prefix.
     module DateHelper
       distance_of_time_in_words = instance_method(:distance_of_time_in_words)
       define_method(:english_distance_of_time_in_words) do |*args|
@@ -38,6 +40,13 @@ module ActionView
           else                 "#{(distance_in_minutes / 1440).round} dagen"
         end
       end
+
+      def dutch_time_ago_in_words(from_time, include_seconds = false)
+        dutch_distance_of_time_in_words(from_time, Time.now, include_seconds)
+      end
+      alias :dutch_distance_of_time_in_words_to_now :dutch_time_ago_in_words
+
+      # default implementation is dutch
       alias :distance_of_time_in_words :dutch_distance_of_time_in_words
     end
   end
