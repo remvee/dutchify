@@ -1,9 +1,28 @@
 = Dutchify
-
 Dutchify rails app by replacing americanisms with nederlanderigheden.
 
-See also: http://blog.remvee.net/post/33
+= Example
+Model:
+  class Bicycle < ActiveRecord::Base
+    dutch_names "fiets".with_plural("fietsen"),
+        :color => "kleur".with_plural("kleuren"),
+        :brand => "merk".with_plural("merken")
+  end
 
+Scaffold it:
+  class BicycleController < ApplicationController
+    scaffold :bicycle
+  end
+
+In your view:
+  Time.now.to_s                       # => "do 31 aug 2006, 22:13"
+  42.ordinalize                       # => "42ste"
+  "ik wil ijs".titleize               # => "Ik Wil IJs"
+  time_ago_in_words(Time.now + 3141)  # => "ongeveer 1 uur"
+  number_to_currency(3999.99)         # => "&euro;3.999,99"
+
+== See also
+http://blog.remvee.net/post/33
 
 == Author
 R.W. van 't Veer
