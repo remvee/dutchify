@@ -58,3 +58,29 @@ module Inflector
   end
   alias :camelize :dutch_camelize
 end
+
+
+class String
+  # Duplicate string and provide a return value for the +pluralize+ method.
+  def with_plural(plural)
+    singular, plural = dup, plural.dup
+    prepare_pluralizer(singular, plural)
+    singular
+  end
+
+  # Duplicate string and provide a return value for the +singularize+ method.
+  def with_singular(singular)
+    singular, plural = singular.dup, dup
+    prepare_pluralizer(singular, plural)
+    plural
+  end
+
+private
+  def prepare_pluralizer(singular, plural)
+    singular.instance_variable_set '@plural', plural
+    plural.instance_variable_set '@singular', singular
+
+    def singular.pluralize; @plural; end
+    def plural.singularize; @singular; end
+  end
+end

@@ -55,4 +55,17 @@ class InflectorTest < Test::Unit::TestCase
       assert_equal underscored, camelcase.underscore
     end
   end
+
+  def test_pluralize
+    assert_equal "boompjes", "boompje".pluralize
+    assert_equal "bomen", "boom".with_plural("bomen").pluralize
+
+    assert_equal "boompje", "boompjes".singularize
+    assert_equal "boom", "bomen".with_singular("boom").singularize
+
+    assert_equal "boompje", "boompje".pluralize.singularize
+    assert_equal "boompjes", "boompjes".singularize.pluralize
+    assert_equal "boom", "boom".with_plural("bomen").pluralize.singularize
+    assert_equal "bomen", "bomen".with_singular("boom").singularize.pluralize
+  end
 end
