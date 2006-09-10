@@ -24,7 +24,7 @@ class Time # :nodoc:
   end
 end
 
-ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update(
+ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
     :default => '%a %d %b %Y, %H:%M')
-ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.update(
-    :default => '%a %d %b %Y')
+ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
+    :default => '%Y-%m-%d', :long => '%A %d %B %Y')
