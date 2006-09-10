@@ -9,9 +9,13 @@ module ActionView # :nodoc:
           content_tag("div",
             content_tag(
               options[:header_tag] || "h2",
-              "Vanwege de volgende fout(en) kon #{human_name} niet opgeslagen worden" 
+              (object.errors.size == 1 ? 
+                  "Vanwege het volgende probleem kon #{human_name} niet opgeslagen worden." :
+                  "Vanwege de volgende problemen kon #{human_name} niet opgeslagen worden.")
             ) +
-            content_tag("p", "Er zijn problemen met de volgende velden:") +
+            (object.errors.size == 1 ? 
+                content_tag("p", "Er is een probleem met het volgende veld:") :
+                content_tag("p", "Er zijn problemen met de volgende velden:")) +
             content_tag("ul", object.errors.full_messages.collect { |msg| content_tag("li", msg) }),
             "id" => options[:id] || "errorExplanation", "class" => options[:class] || "errorExplanation" 
           )
