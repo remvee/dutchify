@@ -14,7 +14,7 @@
   <% end %>
     <td><%= link_to "tonen", :action => "show#{@scaffold_suffix}", :id => entry %></td>
     <td><%= link_to "bewerken", :action => "edit#{@scaffold_suffix}", :id => entry %></td>
-    <td><%= link_to "verwijderen", {:action => "destroy#{@scaffold_suffix}", :id => entry}, { :confirm => "Zeker weten?", :post => true} %></td>
+    <td><%= link_to "verwijderen", {:action => "destroy#{@scaffold_suffix}", :id => entry}, { :confirm => "Zeker weten?", :method => :post } %></td>
   </tr>
 <% end %>
 </table>
