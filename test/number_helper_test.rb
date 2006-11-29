@@ -1,6 +1,4 @@
-#!/usr/bin/env ruby
-
-require 'test/unit'
+require 'test_helper'
 require File.dirname(__FILE__) + '/../lib/number_helper'
 
 class NumberHelperTest < Test::Unit::TestCase
