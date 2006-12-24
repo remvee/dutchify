@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'rails/version'
 require File.dirname(__FILE__) + '/../lib/date_helper'
 
 class DateHelperTest < Test::Unit::TestCase
@@ -20,6 +21,12 @@ class DateHelperTest < Test::Unit::TestCase
     assert_equal "ongeveer 6 uur", distance_of_time_in_words(60 * 60 * 6)
     assert_equal "1 dag", distance_of_time_in_words(60 * 60 * 25)
     assert_equal "23 dagen", distance_of_time_in_words(60 * 60 * 24 * 23)
+    assert_equal "ongeveer 1 maand", distance_of_time_in_words(60 * 60 * 24 * 31)
+    assert_equal "ongeveer 1 maand", distance_of_time_in_words(60 * 60 * 24 * 30)
+    assert_equal "ongeveer 1 maand", distance_of_time_in_words(60 * 60 * 24 * 59)
+    assert_equal "8 maanden", distance_of_time_in_words(60 * 60 * 24 * 31 * 8)
+    assert_equal "ongeveer 1 jaar", distance_of_time_in_words(60 * 60 * 24 * 31 * 12)
+    assert_equal "meer dan 4 jaar", distance_of_time_in_words(60 * 60 * 24 * 31 * 12 * 4)
   end
 
   def test_english_time_ago_in_words
@@ -38,5 +45,14 @@ class DateHelperTest < Test::Unit::TestCase
     assert_equal "about 6 hours", english_distance_of_time_in_words(60 * 60 * 6)
     assert_equal "1 day", english_distance_of_time_in_words(60 * 60 * 25)
     assert_equal "23 days", english_distance_of_time_in_words(60 * 60 * 24 * 23)
+
+    if Rails::VERSION::MAJOR > 1 || Rails::VERSION::MINOR > 1 # since rails-1.2
+      assert_equal "about 1 month", english_distance_of_time_in_words(60 * 60 * 24 * 31)
+      assert_equal "about 1 month", english_distance_of_time_in_words(60 * 60 * 24 * 30)
+      assert_equal "about 1 month", english_distance_of_time_in_words(60 * 60 * 24 * 59)
+      assert_equal "8 months", english_distance_of_time_in_words(60 * 60 * 24 * 31 * 8)
+      assert_equal "about 1 year", english_distance_of_time_in_words(60 * 60 * 24 * 31 * 12)
+      assert_equal "more than 4 years", english_distance_of_time_in_words(60 * 60 * 24 * 31 * 12 * 4)
+    end
   end
 end

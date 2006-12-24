@@ -37,7 +37,11 @@ module ActionView
           when 46..90     then 'ongeveer 1 uur'
           when 90..1440   then "ongeveer #{(distance_in_minutes.to_f / 60.0).round} uur"
           when 1441..2880 then '1 dag'
-          else                 "#{(distance_in_minutes / 1440).round} dagen"
+          when 2880..43199     then "#{(distance_in_minutes / 1440).round} dagen"
+          when 43200..86399    then 'ongeveer 1 maand'
+          when 86400..525959   then "#{(distance_in_minutes / 43200).round} maanden"
+          when 525960..1051919 then 'ongeveer 1 jaar'
+          else                      "meer dan #{(distance_in_minutes / 525960).round} jaar"
         end
       end
 
