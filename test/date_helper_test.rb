@@ -52,7 +52,7 @@ class DateHelperTest < Test::Unit::TestCase
       assert_equal "about 1 month", english_distance_of_time_in_words(60 * 60 * 24 * 59)
       assert_equal "8 months", english_distance_of_time_in_words(60 * 60 * 24 * 31 * 8)
       assert_equal "about 1 year", english_distance_of_time_in_words(60 * 60 * 24 * 31 * 12)
-      assert_equal "more than 4 years", english_distance_of_time_in_words(60 * 60 * 24 * 31 * 12 * 4)
+      assert_equal "over 4 years", english_distance_of_time_in_words(60 * 60 * 24 * 31 * 12 * 4)
     end
   end
 end
