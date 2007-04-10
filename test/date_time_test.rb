@@ -16,4 +16,16 @@ class DateTimeTest < Test::Unit::TestCase
   def test_parse
     assert_equal Time.mktime(2007, 4, 9, 16, 21), Time.parse("ma 09 apr 2007, 16:21")
   end
+  
+  def test_time_to_s
+    assert_equal 'do 10 mei 2007, 16:33', Time.mktime(2007, 5, 10, 16, 33).to_s
+  end
+  
+  def test_date_to_s
+    assert_equal 'do 10 mei 2007', Date.civil(2007, 5, 10).to_s
+  end
+  
+  def test_datetime_to_s
+    assert_equal 'do 10 mei 2007', DateTime.civil(2007, 5, 10).to_s
+  end
 end

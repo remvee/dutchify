@@ -16,16 +16,18 @@ DutchifyDateFormat::ABBR_DAYNAMES = %w{zo ma di wo do vr za}
 DutchifyDateFormat::ABBR_DAYS = {}
 DutchifyDateFormat::ABBR_DAYNAMES.each_with_index { |v,i| DutchifyDateFormat::ABBR_DAYS[v] = i }
 
-class Time # :nodoc:
-  alias :strftime_nolocale :strftime
-  def strftime(format)
-    format = format.dup
-    format.gsub!(/%a/, DutchifyDateFormat::ABBR_DAYNAMES[self.wday])
-    format.gsub!(/%A/, DutchifyDateFormat::DAYNAMES[self.wday])
-    format.gsub!(/%b/, DutchifyDateFormat::ABBR_MONTHNAMES[self.mon])
-    format.gsub!(/%B/, DutchifyDateFormat::MONTHNAMES[self.mon])
-    self.strftime_nolocale(format)
-  end
+[Date, Time].each do |c|
+  c.module_eval <<-END
+    alias :strftime_nolocale :strftime
+    def strftime(format)
+      format = format.dup
+      format.gsub!(/%a/, DutchifyDateFormat::ABBR_DAYNAMES[self.wday])
+      format.gsub!(/%A/, DutchifyDateFormat::DAYNAMES[self.wday])
+      format.gsub!(/%b/, DutchifyDateFormat::ABBR_MONTHNAMES[self.mon])
+      format.gsub!(/%B/, DutchifyDateFormat::MONTHNAMES[self.mon])
+      self.strftime_nolocale(format)
+    end
+  END
 end
 
 require 'active_support'
