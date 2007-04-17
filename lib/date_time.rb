@@ -21,10 +21,10 @@ Date::ABBR_DAYNAMES.each_with_index { |v,i| DutchifyDateFormat::ABBR_DAYS[v] = i
     alias :strftime_nolocale :strftime
     def strftime(format)
       format = format.dup
-      format.gsub!(/%a/, DutchifyDateFormat::ABBR_DAYNAMES[self.wday])
-      format.gsub!(/%A/, DutchifyDateFormat::DAYNAMES[self.wday])
-      format.gsub!(/%b/, DutchifyDateFormat::ABBR_MONTHNAMES[self.mon])
-      format.gsub!(/%B/, DutchifyDateFormat::MONTHNAMES[self.mon])
+      format.gsub!(/%a/, Date::ABBR_DAYNAMES[self.wday])
+      format.gsub!(/%A/, Date::DAYNAMES[self.wday])
+      format.gsub!(/%b/, Date::ABBR_MONTHNAMES[self.mon])
+      format.gsub!(/%B/, Date::MONTHNAMES[self.mon])
       self.strftime_nolocale(format)
     end
   END
