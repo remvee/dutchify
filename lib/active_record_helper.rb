@@ -4,8 +4,8 @@ module ActionView # :nodoc:
       def error_messages_for(object_name, options = {})
         options = options.symbolize_keys
         object = instance_variable_get("@#{object_name}")
-        human_name = object.class.respond_to?(:human_name) ? object.class.human_name : object.class.name
-        unless object.errors.empty?
+        unless object.nil? || object.errors.empty?
+          human_name = object.class.respond_to?(:human_name) ? object.class.human_name : object.class.name
           content_tag("div",
             content_tag(
               options[:header_tag] || "h2",
