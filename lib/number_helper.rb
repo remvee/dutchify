@@ -48,8 +48,8 @@ module ActionView
         number_with_delimiter.bind(self).call(*args)
       end
 
-      def dutch_number_with_delimiter(number, delimiter = '.')
-        english_number_with_delimiter(number, delimiter)
+      def dutch_number_with_delimiter(number, delimiter = '.', separator = ',')
+        english_number_with_delimiter(number, delimiter, separator)
       end
       alias :number_with_delimiter :dutch_number_with_delimiter
     end

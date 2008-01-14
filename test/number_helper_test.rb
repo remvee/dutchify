@@ -40,10 +40,13 @@ class NumberHelperTest < Test::Unit::TestCase
 
   def test_number_with_delimiter
     assert_equal '1.000.000', number_with_delimiter(1_000_000)
-    assert_equal '1 000 000', number_with_delimiter(1_000_000, ' ')
+    assert_equal '1.000.000,0', dutch_number_with_delimiter(1_000_000.0)
+    assert_equal '1x000x000y0', number_with_delimiter(1_000_000.0, 'x', 'y')
+    
     assert_equal '1.000.000', dutch_number_with_delimiter(1_000_000)
-    assert_equal '1 000 000', dutch_number_with_delimiter(1_000_000, ' ')
+    assert_equal '1.000.000,0', dutch_number_with_delimiter(1_000_000.0)
+    
     assert_equal '1,000,000', english_number_with_delimiter(1_000_000)
-    assert_equal '1 000 000', english_number_with_delimiter(1_000_000, ' ')
+    assert_equal '1,000,000.0', english_number_with_delimiter(1_000_000.0)
   end
 end
