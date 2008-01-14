@@ -26,6 +26,6 @@ class DateTimeTest < Test::Unit::TestCase
   end
   
   def test_datetime_to_s
-    assert_equal 'do 10 mei 2007', DateTime.civil(2007, 5, 10).to_s
+    assert_match /^do 10 mei 2007/, DateTime.civil(2007, 5, 10).to_s
   end
 end
