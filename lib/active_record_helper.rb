@@ -1,6 +1,6 @@
-module ActionView # :nodoc:
-  module Helpers # :nodoc:
-    module ActiveRecordHelper # :nodoc:
+module ActionView
+  module Helpers
+    module ActiveRecordHelper
       # Geef een string terug met een <tt>DIV</tt> met daarin alle foutmeldingen voor de objecten waarvan de instantie variabel namen
       # gegeven zijn.  Als er meerder objecten gespecificieerd zijn, worden de foutmeldingen getoond in de volgorde dat de object
       # namen door gegeven zijn.
@@ -10,13 +10,12 @@ module ActionView # :nodoc:
       # * <tt>header_tag</tt> - Gebruikt in de kop van de foutmeldingen div (standaard: h2)
       # * <tt>id</tt> - Het id van de foutmeldingen div (standaard: errorExplanation)
       # * <tt>class</tt> - De class van de foutmeldingen div (standaard: errorExplanation)
-      # * <tt>object_name</tt> - De object naam om te gebruiken in de kop, of een andere tekst.  If <tt>object_name</tt> gegeven
-      # wordt, wordt van het eerste object de <tt>human_name</tt> class methode geprobeerd anders wordt de eerste gegeven object
-      # naam gebruikt.
+      # * <tt>object_name</tt> - De object naam om te gebruiken in de kop, of een andere tekst.  Als <tt>object_name</tt> niet gegeven wordt, wordt van het eerste object de <tt>human_name</tt> class methode geprobeerd.  Als die methode niet beschikbaar is, wordt de eerste gegeven object naam gebruikt.
       #
       # Voorbeelden:
       #
       #   error_messages_for :user
+      #
       #   error_messages_for :user, :address, :object_name => 'gebruiker'
       def error_messages_for(*params)
         options = Hash === params.last ? params.pop.symbolize_keys : {}
