@@ -4,6 +4,8 @@ require 'test_helper'
 require 'rails/version'
 require 'active_support'
 require 'active_record'
+require 'action_controller'
+require 'action_controller/assertions/selector_assertions'
 require 'action_view/helpers/text_helper'
 require 'action_view/helpers/tag_helper'
 
