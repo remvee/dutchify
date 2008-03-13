@@ -16,7 +16,7 @@ module Dutchify
       def self.human_name; @dutch_name; end
 
       self.instance_variable_set '@dutch_names', column_names
-      def self.human_attribute_name(attr); @dutch_names[attr.to_s]; end
+      def self.human_attribute_name(attr); @dutch_names[attr.to_s] || attr.to_s.humanize; end
     
       columns.each do |c|
         t = column_names[c.name]
