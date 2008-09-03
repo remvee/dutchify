@@ -22,10 +22,10 @@ In your view:
   number_to_currency(3999.99)         # => "&euro;3.999,99"
 
 == See also
-http://blog.remvee.net/post/33
+http://blog.remvee.net/2006/08/28/dutchify_plugin
 
 == Author
 R.W. van 't Veer
 
 == Copyright
-Copyright (c) 2006 R.W. van 't Veer
+Copyright (c) 2006, 2007, 2008 R.W. van 't Veer
