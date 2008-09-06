@@ -1,8 +1,11 @@
 require 'active_support'
 
+# Inflector moved to ActiveSupport::Inflector since 2.1.1.
+DutchifyInflector = ActiveSupport.const_defined?(:Inflector) ? ActiveSupport::Inflector : Inflector
+
 # Introduce dutch variant for +ordinalize+ method.  The original english
 # version is still available with a +english_+ prefix.
-module Inflector
+module DutchifyInflector
   ordinalize = instance_method(:ordinalize)
   define_method(:english_ordinalize) do |*args|
     ordinalize.bind(self).call(*args)

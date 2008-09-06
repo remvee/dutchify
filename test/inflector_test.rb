@@ -15,7 +15,7 @@ class InflectorTest < Test::Unit::TestCase
     [
       [1, '1st'], [2, '2nd'], [3, '3rd'], [4, '4th']
     ].each do |t|
-      assert_equal t[1], Inflector.english_ordinalize(t[0])
+      assert_equal t[1], DutchifyInflector.english_ordinalize(t[0])
     end
   end
 
